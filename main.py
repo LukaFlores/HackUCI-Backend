@@ -4,8 +4,9 @@ from firebase_admin import firestore
 from flask import Flask, request, jsonify
 
 from addUser import addUser
+from getUser import getUser
 
-cred = credentials.Certificate("hackuci2022-firebase-adminsdk-g1jrv-61f7819fa4.json")
+cred = credentials.Certificate("hackuci2022-firebase-adminsdk-g1jrv-917eec5fe3.json")
 firebase_admin.initialize_app(cred)
 
 
@@ -14,13 +15,12 @@ db = firestore.client()
 app = Flask(__name__)
 @app.route("/add", methods=["POST"])
 def userInfo():
-    addUser(request.method,request.get_json(),db)
+    return addUser(request.method,request.get_json(),db)
 
 
-@app.route("/getUser", methods=["GET"])
-def otherFunction():
-    #other code here
-    pass
+@app.route("/getUser", methods=["POST"])
+def getTheUser():
+    user = getUser(request.method, request.get_json(), db)
 
 
 
