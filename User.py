@@ -1,8 +1,7 @@
 import json
 
 class User:
-    def __init__(self, json):
-        data = json.load()  # this will convert to dict
+    def __init__(self, data: dict):
         self.age = data['age']
         self.name = data['name']
         self.gender = data['gender']
@@ -11,3 +10,6 @@ class User:
         self.peopleSeen = data['peopleSeen']
         self.userID = data['userID']
 
+    @staticmethod
+    def from_dict(source):
+        pass

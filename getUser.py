@@ -1,9 +1,9 @@
 from User import User
 
 def getUser(method, data, db):
-    if method == "POST":
+    if method == "GET":
         user_id = data['ID']
         user_ref = db.collection("users").document(user_id)
-        user_json = user_ref.get()
-        return User(user_json)
-        # return "<h1>Profile information for {} has been retrieved </h1>".format(data["Name"])
+        user_snap = user_ref.get()
+        user_dict = user_snap.to_dict()
+        return user_dict
