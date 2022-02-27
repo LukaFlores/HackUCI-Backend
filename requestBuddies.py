@@ -8,8 +8,15 @@ def requestBuddies(method, data, db):
         for person in users:
             name, data = person.id, person.to_dict()
             seen = data['peopleSeen']
+
+            if 'isLiked' not in data.keys():
+                data['isLiked'] = {}
+
             if user_id in seen:
-                data['isLiked'][user_id] = 'isLiked'
+                data['isLiked'][user_id] = True
+            else:
+                data['isLiked'][user_id] = False
+
             list_dicts.append({name: data})
         return list_dicts
 
