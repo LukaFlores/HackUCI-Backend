@@ -1,22 +1,17 @@
-from flask import jsonify
-
 def requestBuddies(method, data, db):
     if method == "POST":
         user_id = data["ID"]
-        APPUSER = db.collection("users").document(user_id).get().to_dict()
+        APPUSER = db.collection("users").document(user_id).get()
         users = db.collection("users").limit(10).stream()
 
-        set_dicts = []
+        list_dicts = []
         for person in users:
-            print(person,'\n\n')
-            person = person.to_dict()
-            print(person)
-            seen = person['peopleSeen']
+            name, data = person.id, person.to_dict()
+            seen = data['peopleSeen']
             if user_id in seen:
-                person['isLiked'][user_id] = 'isLiked'
-            set_dicts.append(person)
-
-        return set_dicts
+                data['isLiked'][user_id] = 'isLiked'
+            list_dicts.append({name: data})
+        return list_dicts
 
 
         # 50 random users that are not in people seen
@@ -38,4 +33,4 @@ def requestBuddies(method, data, db):
         #           looking for andrew (only way is if "likedAndNotSeen")
         #           check people seen of Navin to look for andrew
         #               only update swipe right of a single user, not the other
-        return users
+        # return users
