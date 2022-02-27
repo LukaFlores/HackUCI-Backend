@@ -19,10 +19,10 @@ def addUser(method, data, db):
                 'Full Name': fake.name(),
                 'Birthday': fake.date(),
                 'Gender': np.random.choice(g, p=[0.25, 0.25, 0.25, 0.25]),
-                "Preferred Workout Time": np.random.choice(pwt, p=[0.2, 0.2, 0.2, 0.2]),
-                "Preferred Workout Level": np.random.choice(pwl, p=[0.2, 0.2, 0.2, 0.2]),
+                "Preferred Workout Time": np.random.choice(pwt, p=[0.25, 0.25, 0.25, 0.25]),
+                "Preferred Workout Level": np.random.choice(pwl, p=[0.25, 0.25, 0.25, 0.25]),
                 "Preferred Workout Relationship": np.random.choice(pwr, p=[0.5, 0.5]),
-                "Activities": np.random.choice([act, pa])
+                "Activities": np.random.choice(act, p=pa)
             }
             newuser = db.collection("users").document()
             newuser.set(fdata)
