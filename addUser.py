@@ -1,7 +1,7 @@
 from faker import Faker
 import numpy as np
 
-
+fake = Faker()
 def addUser(method, data, db):
     if method == "POST":
         g = ["Male", "Female", "Non-Binary", "other"]
@@ -16,8 +16,8 @@ def addUser(method, data, db):
               1/21, 1/21, 1/21]
         for _ in range(50):
             fdata = {
-                'Full Name': Faker.name(),
-                'Birthday': Faker.date(),
+                'Full Name': fake.name(),
+                'Birthday': fake.date(),
                 'Gender': np.random.choice(g, p=[0.25, 0.25, 0.25, 0.25]),
                 "Preferred Workout Time": np.random.choice(pwt, p=[0.2, 0.2, 0.2, 0.2]),
                 "Preferred Workout Level": np.random.choice(pwl, p=[0.2, 0.2, 0.2, 0.2]),
