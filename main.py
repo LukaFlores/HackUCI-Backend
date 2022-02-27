@@ -25,7 +25,7 @@ def getTheUser():
     return jsonify(getUser(request.method, request.get_json(), db))
 
 
-@app.route("/requestBuddies", methods=["GET"])
+@app.route("/requestBuddies", methods=["POST"])
 def getBuddies():
     return jsonify(requestBuddies(request.method, request.get_json(), db))
 
