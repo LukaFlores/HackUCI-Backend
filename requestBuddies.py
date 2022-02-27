@@ -7,7 +7,8 @@ def requestBuddies(method, data, db):
         list_dicts = []
         for person in users:
             name, data = person.id, person.to_dict()
-            seen = data['peopleSeen']
+            user_data = APPUSER.to_dict()
+            seen = user_data['peopleSeen']
 
             if 'isLiked' not in data.keys():
                 data['isLiked'] = {}
