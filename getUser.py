@@ -1,5 +1,3 @@
-from User import User
-
 def getUser(method, data, db):
     if method == "GET":
         user_id = data['ID']
