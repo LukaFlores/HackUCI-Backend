@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 
 from addUser import addUser
 from getUser import getUser
+from requestBuddies import requestBuddies
 
 cred = credentials.Certificate("hackuci2022-firebase-adminsdk-g1jrv-917eec5fe3.json")
 firebase_admin.initialize_app(cred)
@@ -20,7 +21,12 @@ def userInfo():
 
 @app.route("/getUser", methods=["GET"])
 def getTheUser():
-    return getUser(request.method, request.get_json(), db)
+    return jsonify(getUser(request.method, request.get_json(), db))
+
+
+@app.route("/requestBuddies", methods=["GET"])
+def getBuddies():
+    return requestBuddies(request.method, request.get_json(), db)
 
 
 if __name__ == "__main__":
